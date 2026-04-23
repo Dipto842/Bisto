@@ -16,9 +16,9 @@ const Useten = () => {
     const {refetch,  data: crids=[]  } = useQuery({
 
         queryKey: ['Mycrids', user?.email],
- enabled: !!user?.email,
+        enabled: !!user?.email,
         queryFn: async() =>{
-
+       if (!user?.email) return [];
             const res = await ax.post("/Mycrids", { email: user?.email }); 
             
       
