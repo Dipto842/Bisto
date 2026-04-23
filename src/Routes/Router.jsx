@@ -107,7 +107,7 @@ const Router = createBrowserRouter([
             {
                 path: 'upret/:id',
                 element: <Update></Update>,
-                loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`),
+                loader: ({ params }) => fetch(`https://bistro-boss-restaurant-resources-sarvar.vercel.app/menu/${params.id}`),
 
 
             }

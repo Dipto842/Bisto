@@ -72,7 +72,7 @@ const Nav = () => {
  
   // useEffect(() => {
 
-  //     fetch('http://localhost:5000/crids')
+  //     fetch('https://bistro-boss-restaurant-resources-sarvar.vercel.app/crids')
 
   //         .then(res => res.json()  )
   //         .then(data => {

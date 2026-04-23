@@ -7,7 +7,7 @@ import AxiosPublis from "../axios/AxiosPublis/AxiosPublis"
  const  Usemenu =()=>{
     // const [menu,setmenu]=useState([])
     // useEffect(()=>{
-    //     fetch('http://localhost:5000/menu')
+    //     fetch('https://bistro-boss-restaurant-resources-sarvar.vercel.app/menu')
     //     .then(res=>res.json())
     //     .then(data=>{
     //         setmenu(data)
