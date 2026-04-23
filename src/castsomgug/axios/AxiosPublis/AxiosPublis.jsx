@@ -1,6 +1,6 @@
 import axios from "axios";
 const AxosPublis = axios.create({
-    baseURL: 'https://bistro-boss-restaurant-resources-sarvar.vercel.app'
+    baseURL: import.meta.env.VITE_API_URL
 })
 
 const AxiosPublis = () => {

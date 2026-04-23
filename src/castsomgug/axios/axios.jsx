@@ -3,7 +3,7 @@ import axios from "axios";
 
 
  const axiosnew =axios.create({
-    baseURL:'https://bistro-boss-restaurant-resources-sarvar.vercel.app'
+    baseURL:import.meta.env.VITE_API_URL
 })
 const Axios = () => {
   // const {logout}=useContext(Athcontes)
