@@ -19,7 +19,7 @@ const Useten = () => {
  enabled: !!user?.email,
         queryFn: async() =>{
 
-            const res = await ax.post("/Mycrids", { email: user.email }); 
+            const res = await ax.post("/Mycrids", { email: user?.email }); 
             
       
             return res.data  
