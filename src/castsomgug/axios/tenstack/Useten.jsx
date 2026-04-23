@@ -2,6 +2,7 @@ import {  useQuery } from "@tanstack/react-query";
 import Axios from "../axios";
 import { useContext } from "react";
 import { Athcontes } from "../../../Provadar/AthoProvadar";
+import axios from "axios";
 
 
 const Useten = () => {
@@ -14,14 +15,14 @@ const Useten = () => {
 
     const {refetch,  data: crids=[]  } = useQuery({
 
-        queryKey: ['crid', user?.email],
-
+        queryKey: ['Mycrids', user?.email],
+ enabled: !!user?.email,
         queryFn: async() =>{
 
-            const res = await ax.get(`/crids?email=${user.email}`)
+            const res = await ax.post("/Mycrids", { email: user.email }); 
             
       
-            return res.data
+            return res.data  
 
         }
         

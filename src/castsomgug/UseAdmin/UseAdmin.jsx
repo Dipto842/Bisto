@@ -9,9 +9,10 @@ const UseAdmin = () => {
   const axios = Axios()
     const {data:isAdmin=[]}=useQuery({
 
-        queryKey:['isAdmin', user.email],
+        queryKey:['isAdmin', user?.email],
         queryFn:async()=>{
-            const res=await  axios.get(`/users/addmin/${user.email}`)
+            const res=await  axios.get(`/users/admin/${user?.email}`)
+         
           
             return res.data?.admin
         }

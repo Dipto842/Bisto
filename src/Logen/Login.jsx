@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { Athcontes } from '../Provadar/AthoProvadar';
 import GooleLogin from './Sign Up/BeforLogin/GooleLogin';
+import Swal from 'sweetalert2';
+
 
 const Login = () => {
-  const { singin, user } = useContext(Athcontes)
+  const { singin } = useContext(Athcontes)
 
-
-  const [dijebol, setdejebol] = useState(true)
+const neveget = useNavigate()
+  const [dijebol, setdejebol] = useState()
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, [])
@@ -17,18 +19,30 @@ const Login = () => {
     const from = e.target
     const email = from.email.value
     const password = from.password.value
-    const total = { email, password }
-    singin(email, password)
-    
-      .then((res) => {
-        alert(' ok')
-      
+   
+    singin(email , password)
+      .then(() => {
+        Swal.fire({
+               position: "top-end",
+               icon: "success",
+               title: "Login success",
+               showConfirmButton: false,
+               timer: 1500
+             });
+      neveget('/')
       })
       .catch(() => {
-        alert('it is not ok')
+        Swal.fire({
+               position: "top-end",
+               icon: "error",
+               title: "Not Work",
+               showConfirmButton: false,
+               timer: 1500
+             });
       })
-      Navigate('/')
+    
   }
+
 
   const hendelcepcarvelu = (e) => {
     const cepcar = e.target.value

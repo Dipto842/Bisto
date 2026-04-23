@@ -8,7 +8,7 @@ export const Athcontes = createContext('')
 const AthoProvadar = ({ children }) => {
     const Googleprovider = new GoogleAuthProvider();
     const [Loding, setloding] = useState(true)
-    const [user, setuser] = useState([])
+    const [user, setuser] = useState(null)
     const axpublik = AxiosPublis()
     const singup = (email, password, name) => {
 
@@ -22,12 +22,21 @@ const AthoProvadar = ({ children }) => {
     }
 
     const logout = () => {
-        return signOut(auth)
+       
+
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
 
     }
-    const updateProfil = (name) => {
+    const updateProfil = (name , imgUrl) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
+            photoURL: imgUrl
+
+
         })
     }
     const Google = () => {
@@ -39,12 +48,15 @@ const AthoProvadar = ({ children }) => {
           
             if (currentUser) {
                 const userInfo = { email: currentUser.email }
+               
+                
                 axpublik.post('/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token)
                             setuser(currentUser)
                         }
+                        setloding(false)
                     })
             }
             else {
@@ -61,6 +73,7 @@ const AthoProvadar = ({ children }) => {
     const athuinfo = {
         user,
         singup,
+        Loding,
         singin,
         logout,
         updateProfil,

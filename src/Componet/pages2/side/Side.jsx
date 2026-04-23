@@ -11,7 +11,11 @@ import { Link } from "react-router-dom";
 const Side = () => {
   const [crids, refetch] = Useten()
  
-  const totalprich = crids.reduce((total, item) => total + item.price, 0)
+    const totolardiscount = crids.reduce((total, item) => total + Number(item.discount || 0), 0)
+
+  const totalprich = crids.reduce((total, item) => total + Number(item.price), 0)
+  const totarAmaont = totalprich-totolardiscount
+
   const ax = AxiosPublis()
 
   const hendelDilet = (id) => {
@@ -30,7 +34,7 @@ const Side = () => {
         ax.delete(`/crids/${id}`)
           .then((data) => {
 
-            // console.log(data)     
+                
             if (data.data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
@@ -45,36 +49,37 @@ const Side = () => {
   }
   return (
     <div>
-      <div className=" mx-[397px]">
+      <div className= " mx-[3px]">
 
-        <h1 className="text-[#D99904] text-[20px] font-medium  grid justify-center mt-32 mb-3">---My Cart---</h1>
+        <h1 className="text-[#D99904] text-[20px] font-medium  grid justify-center mt-3 mb-3">---My Cart---</h1>
         <div className="border h-[2px] "></div>
-        <h1 className="text-[30px] font-medium  grid justify-center mt-4 mb-3">WANNA ADD MORE?</h1>
-        <div className="border h-[2px] mb-5 "></div>
+        <h1 className="text-[30px] font-medium  grid justify-center  text-black mt-4 mb-3">WANNA ADD MORE?</h1>
+        <div className="border  mb-5 "></div>
       </div>
-      <div className="w-[992px] mx-auto shadow-xl ">
-        <div className="flex justify-around items-center ">
+      <div className="w-[100%] mx-auto shadow-xl  text-black">
+        <div className="lg:flex justify-around items-center ">
           <h1 className="text-[32px] font-bold mt-9"> Total orders:  {crids.length} </h1>
-          <h1 className="text-[32px] font-bold mt-9">  total price: {totalprich} </h1>
+          <h1 className="text-[32px] font-bold mt-9">  total price: {totarAmaont} </h1>
          {crids.length> 0 ?  <Link to='/sidebar/PAYMENT'>
-          <button className="btn bg-[#D1A054] mt-9">Pay</button>
-          </Link>:    <button disabled className="btn bg-[#D1A054] mt-9">Pay</button>
+          <button className="btn bg-[#D1A054] mt-9  text-white">Pay</button>
+          </Link>:    <button disabled className="btn bg-[#D1A054]   mt-9">Pay</button>
           
 
 
          }
         </div>
         <div>
-          <div className="overflow-x-auto mt-12  " >
-            <table className="table mx-8">
+          <div className="w-full overflow-x-auto mt-12  " >
+            <table className="lg:table ">
               {/* head */}
               <thead className="
     ">
-                <tr>
+                <tr className=" text-black">
                   <th>#</th>
                   <th>image</th>
                   <th>name</th>
                   <th>PRICE</th>
+                  <th>discount</th>
                   <th>ACTION</th>
                 </tr>
               </thead>
@@ -97,10 +102,11 @@ const Side = () => {
                       </div>
                     </td>
                     <td>
-                      <div className="font-bold">{podak.name}</div>
+                      <div className="font-bold  text-black">{podak.name}</div>
 
                     </td>
-                    <td>{podak.price}</td>
+                    <td className=" text-black">{podak.price}</td>
+                    <td className=" text-black">{podak.discount||0}</td>
                     <th>
                       <button onClick={() => hendelDilet(podak._id)} className="btn btn-ghost btn-lg bg-red-500 rounded-{14px} h-12 "><FontAwesomeIcon className="text-white" icon={faTrashCan} /></button>
 

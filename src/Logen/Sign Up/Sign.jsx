@@ -4,22 +4,25 @@ import { Athcontes } from "../../Provadar/AthoProvadar";
 import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
 import AxiosPublis from "../../castsomgug/axios/AxiosPublis/AxiosPublis";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Sign = () => {
   const axiosPublis = AxiosPublis()
-  const { singup, user, updateProfil } = useContext(Athcontes)
+  const { singup, updateProfil } = useContext(Athcontes)
+  const neveget = useNavigate()
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    
   } = useForm()
   const onSubmit = (data) => {
     singup(data.email, data.password, data.name)
       .then((re) => {
-        console.log(re.user)
+       
+
         updateProfil(data.name)
           .then(() => {
             const userInpho = {
@@ -28,13 +31,13 @@ const Sign = () => {
             }
             axiosPublis.post('/users', userInpho)
               .then(res => {
-                console.log('add now')
+               
                 if (res.data.insertedId) {
                   reset()
                   Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your work has been saved",
+                    title: "Sing Success",
                     showConfirmButton: false,
                     timer: 1500
                   });
@@ -45,26 +48,30 @@ const Sign = () => {
 
           })
           .catch((e) => {
-            console.log(e);
+            
           })
           
-      })
 
-    console.log(data)
+           Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Sing Up success",
+        showConfirmButton: false,
+        timer: 1500
+      });
+        neveget('/login')
+
+      })
+      .catch(errors => {
+        alert(errors.message.slice(22, -2))
+      } 
+      )
+
+    
 
   }
 
-
-  console.log(user);
-  // const hedelSingUp = (e)=>{
-  //     e.preventDefault()
-  //     const from = e.target
-  //     const email = from.email.value
-  //     const password = from.password.value
-  //    const name = from.name.value
-  //    console.log(name)
-
-  //         }
+       
 
   return (
     <div>

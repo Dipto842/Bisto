@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <AthoProvadar>
 
 <QueryClientProvider client={queryClient}>
-<div className='w-[1520px] mx-auto' >
+<div className='' >
    <RouterProvider router={Router} />
    </div>
     </QueryClientProvider>

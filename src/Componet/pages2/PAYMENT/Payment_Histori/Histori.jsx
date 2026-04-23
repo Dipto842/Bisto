@@ -1,59 +1,76 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Athcontes } from "../../../../Provadar/AthoProvadar";
 import Axios from "../../../../castsomgug/axios/axios";
+import Usemenu from "../../../../castsomgug/Usemenu/Usemenu";
+import { useState } from "react";
 
 
 
 const Histori = () => {
   const {user}=useContext(Athcontes)
+
   const ax = Axios()
     const {data :paymentshis=[] }=useQuery({
-        queryKey: ['payments',user.email],
+        queryKey: ['payments',user?.email],
         enabled:!!user?.email,
         queryFn:async ()=>{
 const res =await ax.get(`/payment/${user.email}`)
+
+
  return res.data       
 
 }
 })
-console.log(paymentshis);
+
+
+
+
+
 
     return (
         <div>
+
             <form>
-            <div className="overflow-x-auto mt-32 ml-28">
+            <div className="overflow-x-auto mt-32 ml-10">
                 <div><h1>total payment </h1></div>
   <table className="table">
     {/* head */}
-    <thead className="bg-[#D1A054]"> 
+    <thead className="bg-base-200"> 
       <tr>
-        <th></th>
+       
         <th>EMAIL</th>
-        <th>CATEGORY</th>
-        <th>TOTAL PRICE</th>
+        
+        <th>Price</th>
+        
         <th>PAYENT DATE</th>
       
       </tr>
     </thead>
-    {
-      paymentshis.map((item,sum)=>{
-        <tbody>
+  {
+    paymentshis.map(item=>  <tbody key={item._id}>
+  
+    
 
       <tr>
-        <th>{sum}</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-        <td>Red</td>
+        
+        <th className="text-black font-bold">{item.email}</th>
+        <td className="text-black font-bold">{item.print}</td>
+        
+       
+        <td className="text-black font-bold">{item.data}</td>
+        
       </tr>
-    </tbody>
-      })
-    }
+    
+    </tbody>)
+  }
     
   </table>
 </div>
             </form>
+            
+
+        
         </div>
     );
 };

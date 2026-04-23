@@ -14,23 +14,27 @@ const CheckoutForm = () => {
   const { user } = useContext(Athcontes)
   const [erro, setErro] = useState(' ')
   const [crids,refetch] = Useten()
-  const [transactionId, settransaction] = useState(' ')
-  const [clientSecret, setClientSecret] = useState(" ");
-  console.log('xxxxxxx', clientSecret);
-  const totalprice = crids.reduce((total, item) => total + item.price, 0)
-  console.log('xxxxxxx', clientSecret);
-  const ax = Axios()
-  const stripe = useStripe()
-  const elements = useElements()
+  const [transactionId, settransaction] = useState('')
+  const [clientSecret, setClientSecret] = useState("");
+
+    const totolardiscount = crids.reduce((total, item) => total + Number(item.discount || 0), 0)
+
+    const totalprich = crids.reduce((total, item) => total + Number(item.price), 0)
+    const totarAmaont = totalprich-totolardiscount
+   
+   
+    const ax = Axios()
+    const elements = useElements()
+    const stripe = useStripe()
 
 
   useEffect(() => {
-    ax.post('/create_payment_intent', { price: totalprice })
+    ax.post('/create_payment_intent', { price: totarAmaont })
       .then(res => {
-        console.log('xxxxxxx', res.data.clientSecret);
+       
         setClientSecret(res.data.clientSecret)
       })
-  }, [ax, totalprice])
+  }, [ totarAmaont])
 
 
 
@@ -44,6 +48,8 @@ const CheckoutForm = () => {
     }
 
     const card = elements.getElement(CardElement)
+    
+    
     if (card === null) {
 
       return
@@ -54,11 +60,11 @@ const CheckoutForm = () => {
 
     })
     if (error) {
-      console.log('pement methor eroor', error)
+   
       setErro(error.message)
     }
     else {
-      console.log('pement methor', paymentMethod);
+    
       setErro(' ')
 
       Swal.fire({
@@ -81,19 +87,19 @@ const CheckoutForm = () => {
       }
     })
     if (confirmerror) {
-      console.log('error', confirmerror);
+      // console.log('error', confirmerror);
 
     }
     else {
-      console.log('paymentIntent', paymentIntent);
+    
       if (paymentIntent.status === "succeeded") {
-        console.log("succeeded", paymentIntent.id);
+       
         settransaction(paymentIntent.id)
         // save pemonent in the databage
 
         const payment = {
           email: user.email,
-          print: totalprice,
+          print: totarAmaont,
           transactionId: paymentIntent.id ,
           data: new Date(),
           cardId: crids.map(item => item._id),
@@ -101,7 +107,7 @@ const CheckoutForm = () => {
           status: 'pending'
         }
         const res = await ax.post('/payment',payment)
-        console.log('pement save',res);
+      
         refetch()
         if(res.data?.paymentrejart?.insertedId){
           Swal.fire({

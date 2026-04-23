@@ -1,6 +1,6 @@
 import axios from "axios";
 const AxosPublis = axios.create({
-    baseURL: 'https://bistro-boss-restaurant-resources-sarvar.vercel.app'
+    baseURL: 'http://localhost:5000'
 })
 
 const AxiosPublis = () => {

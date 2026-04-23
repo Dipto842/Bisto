@@ -12,7 +12,7 @@ const GooleLogin = () => {
   const Gooolhendel = () => {
     Google()
       .then((res) => {
-        console.log(res)
+       
         Navigate('/')
         const userinfo = {
           name: res.user?.displayName,
@@ -21,7 +21,7 @@ const GooleLogin = () => {
 
         axios.post('/users', userinfo)
           .then(res => {
-            console.log(res, 'add')
+          
       
            
           })

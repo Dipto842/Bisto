@@ -17,6 +17,8 @@ import Update from "../Componet/pages2/manageitems/UPDATE ITEM/UPDATE";
 import Payment from "../Componet/pages2/PAYMENT/Payment";
 import AdminHome from "../Componet/pages2/AdminHome/AdminHome";
 import Histori from "../Componet/pages2/PAYMENT/Payment_Histori/Histori";
+import CONTACT from "../Componet/Pages/CONTACT/CONTACT";
+import Booking from "../Componet/Pages/Booking/Booking";
 
 
 const Router = createBrowserRouter([
@@ -45,6 +47,16 @@ const Router = createBrowserRouter([
                 path: '/Singup',
                 element: <Sign></Sign>
             },
+            {
+                path: '/contact',
+                element:<CONTACT></CONTACT>
+            },
+            
+            {
+                path:"/Booking",
+                element:<Booking></Booking>
+            },
+         
 
 
 
@@ -95,7 +107,7 @@ const Router = createBrowserRouter([
             {
                 path: 'upret/:id',
                 element: <Update></Update>,
-                loader: ({ params }) => fetch(`https://bistro-boss-restaurant-resources-sarvar.vercel.app/menu/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`),
 
 
             }

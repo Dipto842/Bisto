@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Nav from "./Shear/Naver/Nav";
+import Footer from "./Shear/Footer/Footer";
 
 const Mainb = () => {
     const lokechon = useLocation()
@@ -11,6 +12,7 @@ const Mainb = () => {
              {nonave|| <Nav></Nav>}
             
             <Outlet></Outlet>
+            <Footer></Footer>
         </div>
     );
 };
