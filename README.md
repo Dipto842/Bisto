@@ -6,8 +6,8 @@ A modern full-stack restaurant web application with role-based access, payment i
 
 ## 🌐 Live Links
 
-- 🔗 Frontend: https://bisto-bos.web.app/
-- 🔗 Server: https://bistro-boss-restaurant-resources-sarvar.vercel.app/
+- 🔗 Frontend: https://bisto-wine.vercel.app
+
 
 ---
 
