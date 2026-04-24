@@ -33,7 +33,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/men',
-                element: <Menu></Menu>
+                element: <Privetroot><Menu></Menu></Privetroot>
             },
             {
                 path: '/our',
@@ -54,7 +54,7 @@ const Router = createBrowserRouter([
             
             {
                 path:"/Booking",
-                element:<Booking></Booking>
+                element:<Privetroot><Booking></Booking></Privetroot>
             },
          
 

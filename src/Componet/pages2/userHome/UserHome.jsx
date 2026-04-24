@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Athcontes } from "../../../Provadar/AthoProvadar";
 
 import Axios from "../../../castsomgug/axios/axios";
+import { Link } from "react-router-dom";
 
 
 
@@ -88,13 +89,18 @@ getData()
 
       {/* 🚀 Quick Actions */}
       <div className="flex flex-wrap gap-4">
+       <Link to={'/Booking'}>
         <button className="btn bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800">
           Book Table
         </button>
+       </Link>
 
+
+        <Link to={'/sidebar/side'}>
         <button className="btn bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800">
           View Cart
         </button>
+        </Link>
 
         <button className="btn bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800">
           My Orders

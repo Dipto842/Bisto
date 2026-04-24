@@ -1,6 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Usemenu from "../../../castsomgug/Usemenu/Usemenu";
-import { faPenToSquare, faPercent, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faPercent,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import Axios from "../../../castsomgug/axios/axios";
 import { Link } from "react-router-dom";
@@ -13,8 +17,6 @@ const Manageitems = () => {
   const axs = Axios();
 
   const henedlDeletItm = (itam) => {
- 
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -26,7 +28,7 @@ const Manageitems = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axs.delete(`/menu/${itam}`);
-        
+
         if (res.data.deletedCount > 0) {
           refetch();
           Swal.fire({
@@ -42,31 +44,22 @@ const Manageitems = () => {
   };
 
   const henedldiscount = (menu) => {
-   
-
-    Swal.fire({ 
-      title: "Enter the discount percentage:",  
+    Swal.fire({
+      title: "Enter the discount percentage:",
       input: "number",
-     
+
       showCancelButton: true,
-      confirmButtonText: "Apply"
+      confirmButtonText: "Apply",
     }).then(async (result) => {
       if (result.isConfirmed) {
+        const discount = Number(result.value);
 
+        const res = await axs.patch(`/menu/discount/${menu._id}`, { discount });
 
- const  discount= Number(result.value)
-
-const res = await axs.patch(`/menu/discount/${menu._id}`,{discount})
-
-
-
-       
-          refetch();
-      
+        refetch();
       }
     });
   };
-
 
   return (
     <div>
@@ -110,7 +103,6 @@ const res = await axs.patch(`/menu/discount/${menu._id}`,{discount})
             {menu.map((itam, index) => (
               <tr key={itam._id}>
                 <td>{index + 1}</td>
-                
 
                 <td>
                   <div className="flex items-center gap-3">
@@ -137,7 +129,7 @@ const res = await axs.patch(`/menu/discount/${menu._id}`,{discount})
                     </button>
                   </Link>
                 </td>
-{/* HendelDelet */}
+                {/* HendelDelet */}
                 <th>
                   <button
                     onClick={() => henedlDeletItm(itam._id)}

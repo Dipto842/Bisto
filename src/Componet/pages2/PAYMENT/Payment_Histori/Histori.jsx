@@ -13,7 +13,7 @@ const Histori = () => {
   const ax = Axios()
     const {data :paymentshis=[] }=useQuery({
         queryKey: ['payments',user?.email],
-        enabled:!!user?.email,
+        
         queryFn:async ()=>{
 const res =await ax.get(`/payment/${user.email}`)
 
@@ -25,6 +25,7 @@ const res =await ax.get(`/payment/${user.email}`)
 
 
 
+console.log(paymentshis,'dddd');
 
 
 
