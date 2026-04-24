@@ -1,29 +1,82 @@
-# 🍽️ Bisto-Bos Restaurant Website
+# 🍽️ Bisto-Bos | Full Stack Restaurant Management System
 
-A modern and responsive restaurant web application where users can explore menu items, add food to cart, and place orders seamlessly.
+A modern full-stack restaurant web application with role-based access, payment integration, and real-time data management.
 
 ---
 
-## 🚀 Live Demo
-🔗 https://bisto-wine.vercel.app
+## 🌐 Live Links
+
+- 🔗 Frontend: https://bisto-bos.web.app/
+- 🔗 Server: https://bistro-boss-restaurant-resources-sarvar.vercel.app/
 
 ---
 
 ## 📌 Project Overview
 
-**Bisto-Bos** is a full-stack restaurant website designed to provide a smooth user experience for browsing food items and ordering online. The project focuses on clean UI, performance, and real-world functionality.
+**Bisto-Bos** is a full-featured restaurant management system where users can browse menu items, add to cart, place orders, and make secure payments.  
+Admins have full control over menu, users, and analytics.
 
 ---
 
-## ✨ Features
+## 🔥 Key Features
 
-- 🔍 Browse food items by category
-- 🛒 Add to cart functionality
-- 💳 Order system (Booking / Payment ready)
-- 📱 Fully responsive design (Mobile, Tablet, Desktop)
-- ⚡ Fast loading with optimized performance
-- 🔐 Secure API integration
-- 🎯 Dynamic data fetching
+### 👤 User Features
+- 🍽️ Browse menu items
+- 🛒 Add/remove items from cart
+- 💳 Secure payment with Stripe
+- 📜 View payment history
+- 📅 Booking system
+
+---
+
+### 👨‍💼 Admin Features
+- ➕ Add new menu items
+- ✏️ Update menu (price, recipe, discount)
+- ❌ Delete items
+- 👥 Manage users (make admin)
+- 📊 Dashboard analytics:
+  - Total users
+  - Total orders
+  - Total revenue
+  - Category-based sales stats
+
+---
+
+## 🔐 Authentication & Security
+
+- JWT (JSON Web Token) based authentication
+- Protected routes using middleware (`verifyToken`)
+- Admin-only access control (`verifyAdmin`)
+- Secure API handling
+
+---
+
+## 💳 Payment Integration
+
+- Stripe Payment Intent API
+- Dynamic amount calculation
+- Secure transaction handling
+- Cart auto-clear after payment
+
+---
+
+## ⚡ Real-Time Data System
+
+- MongoDB as database
+- Dynamic API-based data fetching
+- Admin changes instantly reflect for all users
+- Discount system supported
+
+---
+
+## 🧠 Backend Highlights (Your Code 🔥)
+
+- RESTful API with Express.js
+- MongoDB Aggregation used for analytics:
+  - Revenue calculation
+  - Category-wise sales
+- Role-based authorization
+- Error handling (Stripe + server)
 
 ---
 
@@ -32,61 +85,101 @@ A modern and responsive restaurant web application where users can explore menu 
 ### Frontend:
 - React.js
 - Tailwind CSS
-- React Router
 - Axios
+- React Router
 
 ### Backend:
 - Node.js
 - Express.js
 - MongoDB
+- JWT Authentication
 
-### Tools & Deployment:
-- Firebase (Hosting)
-- Vercel (Server)
-- Git & GitHub
+### Payment:
+- Stripe API
 
----
+## 🚀 Deployment
 
-
-
-
-## 👨‍💼 Admin & User Role System
-
-This project includes a role-based system with two types of users:
-
-### 🔐 Admin Features
-- ➕ Add new food items
-- ✏️ Update existing items
-- ❌ Delete menu items
-- 💸 Apply discount on products
-
-### 👤 User Features
-- 🍽️ Browse all menu items
-- 🛒 Add items to cart
-- 💳 Place orders
-- 👀 View updated prices (including discounts)
+- ▲ Frontend: Vercel
+- ⚙️ Backend: Render
 
 ---
 
-## 🔄 Real-Time Data Sync
+## 📂 API Endpoints Overview
 
-All data is dynamically managed from the backend database.
+### 🔐 Auth
+- `POST /jwt` → Generate token
 
-- When an **admin adds, updates, deletes, or applies a discount**,  
-  👉 the changes are instantly reflected for all users.
+### 👤 Users
+- `GET /users` → Get all users (Admin)
+- `PATCH /users/admin/:id` → Make admin
+- `GET /users/admin/:email` → Check admin
 
-- Users always see:
-  - ✅ Latest menu items
-  - ✅ Updated prices
-  - ✅ Active discounts
+### 🍽️ Menu
+- `GET /menu` → Get all items
+- `POST /menu` → Add item (Admin)
+- `PATCH /menu/:id` → Update item
+- `PATCH /menu/discount/:id` → Apply discount
+- `DELETE /menu/:id` → Delete item
 
-This ensures a **real-time and consistent user experience** across the platform.
+### 🛒 Cart (Crids)
+- `POST /crids` → Add to cart
+- `GET /crids` → Get cart
+- `DELETE /crids/:id` → Remove item
+
+### 💳 Payment
+- `POST /create_payment_intent`
+- `POST /payment`
+- `GET /payment/:email`
+
+### 📊 Admin Stats
+- `GET /addminhom`
+- `GET /odarstart`
+
+### 📅 Booking
+- `POST /booking`
+- `GET /booking`
 
 ---
 
-## 🧠 How It Works
+## 🚧 Ongoing Development
 
-- Backend API (Node.js + Express) handles all CRUD operations
-- MongoDB stores menu and pricing data
-- Frontend fetches updated data using Axios
-- No static data — everything is dynamic and synced
+Currently, I am working on:
+
+- 🔐 Improving authentication system
+- 💳 Enhancing payment flow
+- 📊 Advanced admin dashboard UI
+
+👉 These features will make the application more **secure, scalable, and production-ready**
+
+---
+
+## ⚠️ Challenges Faced
+
+- CORS issues between frontend & backend
+- Stripe payment integration complexity
+- Secure route protection with JWT
+
+👉 Solved by proper backend configuration and middleware handling
+
+---
+
+## 🎯 Future Improvements
+
+- 🔐 Full Firebase/Auth system
+- 📊 Advanced analytics dashboard (charts)
+- ⭐ Review & rating system
+- 📦 Order tracking system
+
+---
+
+## 👨‍💻 Author
+
+**Dipto Bakshi**  
+📧 Email: diptobakshi72@gmail.com  
+📞 Phone: +8801791620986  
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
