@@ -41,10 +41,10 @@ const Side = () => {
                 text: "Your file has been deleted.",
                 icon: "success"
               });
+              refetch()
             }
           })
       }
-      refetch()
     });
   }
   return (
