@@ -25,7 +25,7 @@ const PopularItem = () => {
    const hedelAdd = (data) => {
  
 
-        if (user && user.email) {
+        if (user && user?.email) {
      
       const Data = {
         menuid: data._id,

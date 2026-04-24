@@ -7,14 +7,14 @@ import Axios from "../axios/axios";
 const UseAdmin = () => {
     const {user}=useContext(Athcontes)
   const axios = Axios()
-    const {data:isAdmin=[]}=useQuery({
+    const {data:isAdmin=false}=useQuery({
 
         queryKey:['isAdmin', user?.email],
        enabled: !!user?.email ,
         queryFn:async()=>{
             const res=await  axios.get(`/users/admin/${user?.email}`)
          
-          
+          console.log('Admin Check Response:', res.data);
             return res.data?.admin
         }
     })

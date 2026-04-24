@@ -8,7 +8,7 @@ import UseAdmin from "../../../castsomgug/UseAdmin/UseAdmin";
 import { signOut } from "firebase/auth";
 import auth from "../../../firebase/Firebase.config";
 import Swal from "sweetalert2";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Nav = () => {
   const [isAdmin] = UseAdmin();
@@ -29,6 +29,8 @@ const Nav = () => {
         // An error happened.
       });
   };
+  console.log(isAdmin);
+  
   const link = (
     <>
       <div className="lg:flex lg:gap-5 lg:mr-[149px] lg:items-center ">
@@ -245,7 +247,7 @@ const Nav = () => {
             />
             <h1>email: {user?.email}</h1>
             <h1>Name: {user?.displayName}</h1>
-            <h1>roule: admin</h1>
+            <h1>roule: {}</h1>
 
             <button
               onClick={hendelupdate}
